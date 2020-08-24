@@ -60,3 +60,10 @@ get '/details/:id' do # Understand, yeah man!)
   @row = @results[0]
   erb :details
 end
+
+post '/details/:id' do
+  post_id = params[:id]
+  content = params[:content]
+
+  erb "Text"
+end
