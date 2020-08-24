@@ -53,8 +53,10 @@ get '/posts' do
   erb :posts
 end
 
-get '/details/:id' do
+get '/details/:id' do # Understand, yeah man!)
   post_id = params[:id]
 
-  erb "Displaying information for post with id #{post_id}"
+  @results = @db.execute 'select * from posts where id = ?;', [post_id]
+  @row = @results[0]
+  erb :details
 end
