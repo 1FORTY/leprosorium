@@ -52,3 +52,9 @@ end
 get '/posts' do
   erb :posts
 end
+
+get '/details/:id' do
+  post_id = params[:id]
+
+  erb "Displaying information for post with id #{post_id}"
+end
