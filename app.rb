@@ -22,7 +22,7 @@ configure do
 end
 
 before do
-
+  init_db
 end
 
 get '/' do
@@ -35,6 +35,11 @@ end
 
 post '/new' do
   @content = params[:content]
+
+  if @content.size <= 0
+    @error = 'Вы не ввели никакого сообщения'
+    return erb :new
+  end
 
   erb "You typed: #{@content}"
 end
