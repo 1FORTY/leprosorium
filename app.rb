@@ -11,6 +11,13 @@ get '/new' do
   erb :new
 end
 
+post '/new' do
+  @content = params[:content]
+
+  erb "You typed: #{@content}"
+end
+
+
 get '/posts' do
   erb :posts
 end
