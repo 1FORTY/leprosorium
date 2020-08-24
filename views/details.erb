@@ -20,6 +20,14 @@
 
     <h2>Comments:</h2>
 
+    <% @comments.each do |comment| %>
+        <p>
+          <%= comment['content'] %>
+          Added at <%= comment['created_date'] %>
+          <hr>
+        </p>
+    <% end %>
+
     <form action="/details/<%= @row['id'] %>" method="post">
       <textarea name="content" class="form-control" rows="6" placeholder="Enter your comment"></textarea>
       <br>
