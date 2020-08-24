@@ -8,9 +8,9 @@ get '/' do
 end
 
 get '/new' do
-  erb :posts
+  erb :new
 end
 
 get '/posts' do
-  erb :new
+  erb :posts
 end
