@@ -11,6 +11,8 @@
   <h1>Latest posts:</h1>
 
   <% @results.each do |post| %>
+    <a href="/">@<%= post['name'] %></a> <br>
+    <br>
     <p>
       <%= post['content'] %> <br>
       <br>

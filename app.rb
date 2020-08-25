@@ -17,14 +17,15 @@ configure do
   @db.execute 'CREATE TABLE IF NOT EXISTS "Posts" (
   "id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "created_date"	DATE,
-  "content"	TEXT
+  "content"	TEXT,
+  "name" TEXT
   );'
 
   @db.execute 'CREATE TABLE IF NOT EXISTS "Comments" (
   "id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "created_date"	DATE,
   "content"	TEXT,
-  post_id INTEGER
+  "post_id" INTEGER
   );'
 end
 
@@ -33,7 +34,7 @@ before do
 end
 
 get '/' do
-  @results = @db.execute 'select * from posts order by id desc;'
+  @results = @db.execute 'select * from Posts order by id desc;'
 
 	erb :index
 end
@@ -44,13 +45,14 @@ end
 
 post '/new' do
   @content = params[:content]
+  @name = params[:name]
 
   if @content.size <= 0
     @error = 'Вы не ввели никакого сообщения'
     return erb :new
   end
 
-  @db.execute 'insert into Posts (content, created_date) values (?, datetime());', [@content]
+  @db.execute 'insert into Posts (content, created_date, name) values (?, datetime(), ?);', [@content, @name]
 
   redirect to('/')
 end
